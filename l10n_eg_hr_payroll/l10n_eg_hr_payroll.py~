@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+
+from openerp import fields, models
+import openerp.addons.decimal_precision as dp
+
+
+class HRContractEg(models.Model):
+    _inherit = 'hr.contract'
+
+    variable_salary = fields.Float(string='Variable Salary', digits=dp.get_precision('Payroll'), default=0.0)
+    other_allowance = fields.Float(string='Allowances', digits=dp.get_precision('Payroll'), default=0.0)
+    commission_allowance = fields.Float(string='Commissions', digits=dp.get_precision('Payroll'), default=0.0)
+    mobile_allowance = fields.Float(string='Mobile', digits=dp.get_precision('Payroll'), default=0.0)
+    meal_allowance = fields.Float(string='Meal', digits=dp.get_precision('Payroll'), default=0.0)
+    transportation_allowance = fields.Float(string='Transportation', digits=dp.get_precision('Payroll'), default=0.0)
+
+# class HREmployeeEg(models.Model):
+#     _inherit = 'hr.employee'

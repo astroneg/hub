@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Employee Contract -->
+        <!--<record id="hr_payroll.hr_contract_firstcontract1" model="hr.contract">
+            <field name="name">Employee's Contract (Egypt payroll 2015)</field>
+            <field name="struct_id" ref="hr_payroll_salary_structure_employee"/>
+            <field eval="2500.0" name="wage"/>
+            <field eval="160.0" name="variable_amount"/>
+            <field eval="0.0" name="commission_allowance"/>
+            <field eval="100.0" name="mobile_amount"/>
+            <field eval="0.0" name="meal_amount"/>
+            <field eval="50.0" name="transportation_amount"/>
+            <field name="working_hours" ref="resource.timesheet_group1"/>
+        </record>-->
+    </data>
+</openerp>
+
