@@ -66,6 +66,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.meal_amount</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_soc_alw_rule" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_soc_alw_cat"/>
@@ -76,6 +77,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.social_allowance_amount</field>
             <field name="appears_on_payslip" eval="True"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_mobile_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
@@ -86,6 +88,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.mobile_amount</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_commission_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
@@ -96,6 +99,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.commission_amount</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_other_taxable_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
@@ -106,6 +110,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.other_taxable_amount</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_non_taxable_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
@@ -116,7 +121,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.non_taxable_amount</field>
             <field name="appears_on_payslip" eval="False"/>
-
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
             <field name="name">Net</field>
@@ -127,6 +132,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = categories.BASIC + categories.ALW - categories.DED</field>
             <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+            <field name="struct_id" eval="2"/>
         </record>
 
         <!-- FIXME: change variable_amount to insurance_variable_salary and added to insurance category and -->
@@ -143,6 +149,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = 1120 if contract.wage > 1120 else contract.wage</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_insurance_variable_rule" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_insurance"/>
@@ -155,6 +162,7 @@
                 >= 2110 else (contract.variable_amount + (contract.wage - INS_BASIC))
             </field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_insurance_total_rule" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.DED"/>
@@ -165,6 +173,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = INS_BASIC * 0.14 + INS_VAR * 0.11</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
 
         <!-- Total Exemption -->
@@ -179,6 +188,7 @@
                 + contract.mobile_amount * 0.8 + INS_TOTAL + 1125
             </field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
 
         <record id="hr_payroll_rules_taxable_amount" model="hr.salary.rule">
@@ -190,6 +200,7 @@
             <field name="amount_python_compute">result = categories.GROSS - categories.EXMPT</field>
             <field name="condition_select">none</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <!-- TODO: extract child rules to main rules -->
         <record id="hr_payroll_rules_tax" model="hr.salary.rule">
@@ -201,6 +212,7 @@
             <field name="sequence">145</field>
             <field name="condition_select">none</field>
             <field name="appears_on_payslip" eval="True"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_taxes_1958" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_tax_sc"/>
@@ -216,6 +228,7 @@ else:
             <field name="sequence">141</field>
             <field name="condition_select">none</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_taxes_3208" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_tax_sc"/>
@@ -232,6 +245,7 @@ else:
             <field name="condition_select">python</field>
             <field name="condition_python">result = categories.TXBL >= 1958.34</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_taxes_16125" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_tax_sc"/>
@@ -248,6 +262,7 @@ else:
             <field name="condition_select">python</field>
             <field name="condition_python">result = categories.TXBL >= 3208.34</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_rules_taxes_16125_" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_tax_sc"/>
@@ -259,6 +274,7 @@ else:
             <field name="condition_select">python</field>
             <field name="condition_python">result = categories.TXBL >= 16125</field>
             <field name="appears_on_payslip" eval="False"/>
+            <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_salary_structure_legal_employee" model="hr.payroll.structure">
             <field name="code">EGP.201508</field>
