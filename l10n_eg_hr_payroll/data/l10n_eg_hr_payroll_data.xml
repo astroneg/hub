@@ -277,7 +277,7 @@ else:
             <field name="struct_id" eval="2"/>
         </record>
         <record id="hr_payroll_salary_structure_legal_employee" model="hr.payroll.structure">
-            <field name="code">EGP.201508</field>
+<!--             <field name="code">EGP.201508</field> -->
             <field name="name">Egypt Legal rules. 201508</field>
             <field eval="[(6, 0, [ref('hr_payroll_rules_tax'),ref('hr_payroll_rules_taxes_1958'),ref('hr_payroll_rules_taxes_3208'),
             ref('hr_payroll_rules_exemptions'), ref('hr_payroll_rules_taxes_16125'),ref('hr_payroll_rules_taxes_16125_'),
