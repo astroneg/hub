@@ -43,22 +43,7 @@
             <field name="code">SOC_ALW</field>
             <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
         </record>
-        <record id="hr_payroll_salary_structure_legal_employee" model="hr.payroll.structure">
-            <field name="code">EGP.201508</field>
-            <field name="name">Egypt Legal rules. 201508</field>
-            <field eval="[(6, 0, [ref('hr_payroll_rules_tax'),ref('hr_payroll_rules_taxes_1958'),ref('hr_payroll_rules_taxes_3208'),
-            ref('hr_payroll_rules_exemptions'), ref('hr_payroll_rules_taxes_16125'),ref('hr_payroll_rules_taxes_16125_'),
-            ref('hr_payroll_rules_taxable_amount'),ref('hr_payroll_rules_insurance_basic_rule'),
-            ref('hr_payroll_rules_insurance_variable_rule'),ref('hr_payroll_transportation_alw'),
-            ref('hr_payroll_meal_alw'),ref('hr_payroll_mobile_alw'),ref('hr_payroll_soc_alw_rule'),
-            ref('hr_payroll_commission_alw'),ref('hr_payroll_other_taxable_alw'),ref('hr_payroll_non_taxable_alw'),
-            ref('hr_payroll_rules_insurance_total_rule'),])]"
-                   name="rule_ids"/>
-            <field name="company_id" ref="base.main_company"/>
-            <field name="parent_id" ref="hr_payroll.structure_base"/>
-        </record>
         <!-- BASIC: 1, GROSS: 100, NET: 200 -->
-
         <!-- HR SALARY RULES-->
         <!-- Allowances -->
         <record id="hr_payroll_transportation_alw" model="hr.salary.rule">
@@ -70,7 +55,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.transportation_amount</field>
             <field name="appears_on_payslip" eval="False"/>
-            <field name="struct_id" ref="hr_payroll_salary_structure_legal_employee"/>
+            <field name="struct_id" ref="2"/>
         </record>
         <record id="hr_payroll_meal_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
@@ -274,6 +259,20 @@ else:
             <field name="condition_select">python</field>
             <field name="condition_python">result = categories.TXBL >= 16125</field>
             <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_salary_structure_legal_employee" model="hr.payroll.structure">
+            <field name="code">EGP.201508</field>
+            <field name="name">Egypt Legal rules. 201508</field>
+            <field eval="[(6, 0, [ref('hr_payroll_rules_tax'),ref('hr_payroll_rules_taxes_1958'),ref('hr_payroll_rules_taxes_3208'),
+            ref('hr_payroll_rules_exemptions'), ref('hr_payroll_rules_taxes_16125'),ref('hr_payroll_rules_taxes_16125_'),
+            ref('hr_payroll_rules_taxable_amount'),ref('hr_payroll_rules_insurance_basic_rule'),
+            ref('hr_payroll_rules_insurance_variable_rule'),ref('hr_payroll_transportation_alw'),
+            ref('hr_payroll_meal_alw'),ref('hr_payroll_mobile_alw'),ref('hr_payroll_soc_alw_rule'),
+            ref('hr_payroll_commission_alw'),ref('hr_payroll_other_taxable_alw'),ref('hr_payroll_non_taxable_alw'),
+            ref('hr_payroll_rules_insurance_total_rule'),])]"
+                   name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" ref="hr_payroll.structure_base"/>
         </record>
     </data>
 </openerp>
