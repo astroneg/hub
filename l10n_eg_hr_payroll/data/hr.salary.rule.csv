@@ -1,0 +1,6 @@
+"id","amount_select","condition_range_min","condition_range_max","amount_percentage","amount_fix","name","category_id","sequence","code","parent_rule_id/id","condition_select","condition_range","amount_percentage_base","register_id/id"
+1,"fix",0,480,,0,"Withholding Tax","Withholding Tax Grid 2011 (Precompte Professionnel Bareme 2011)",130,"P.P","hr_payroll_rules_bareme","range","GROSS",,"contrib_register_pp"
+2,"fix",480,495,,0,"Withholding Tax","Withholding Tax Grid 2011 (Precompte Professionnel Bareme 2011)",130,"P.P","hr_payroll_rules_bareme","range","GROSS",,"contrib_register_pp"
+3,"fix",495,510,,0,"Withholding Tax","Withholding Tax Grid 2011 (Precompte Professionnel Bareme 2011)",130,"P.P","hr_payroll_rules_bareme","range","GROSS",,"contrib_register_pp"
+4,"fix",510,525,,0,"Withholding Tax","Withholding Tax Grid 2011 (Precompte Professionnel Bareme 2011)",130,"P.P","hr_payroll_rules_bareme","range","GROSS",,"contrib_register_pp"
+5,"fix",525,540,,0,"Withholding Tax","Withholding Tax Grid 2011 (Precompte Professionnel Bareme 2011)",130,"P.P","hr_payroll_rules_bareme","range","GROSS",,"contrib_register_pp"

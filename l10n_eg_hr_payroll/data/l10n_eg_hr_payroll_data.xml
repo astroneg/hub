@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- CONTRIBUTION REGISTERS -->
+        <!-- <record id="res_partner_onss" model="res.partner">
+             <field name="name">Office National de Sécurité Sociale (ONSS)</field>
+             <field name="supplier">1</field>
+             <field eval="0" name="customer"/>
+         </record>
+         <record id="contrib_register_meal_vouchers" model="hr.contribution.register">
+             <field name="name">Meal Voucher Supplier</field>
+             <field name="partner_id" ref="res_partner_meal_vouchers"/>
+         </record>-->
+
+        <!-- HR SALARY RULE CATEGORIES-->
+        <record id="hr_payroll_tax" model="hr.salary.rule.category">
+            <field name="name">Taxes</field>
+            <field name="code">TAX</field>
+            <field name="parent_id" ref="hr_payroll.DED"/>
+        </record>
+        <record id="hr_payroll_tax_sc" model="hr.salary.rule.category">
+            <field name="name">Tax Slices</field>
+            <field name="code">TAX_SC</field>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+        </record>
+        <record id="hr_payroll_insurance" model="hr.salary.rule.category">
+            <field name="name">Social Insurance</field>
+            <field name="code">INS</field>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+        </record>
+        <record id="hr_payroll_taxable" model="hr.salary.rule.category">
+            <field name="name">Tax Pool</field>
+            <field name="code">TXBL</field>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+        </record>
+        <record id="hr_payroll_exemption" model="hr.salary.rule.category">
+            <field name="name">Exemptions</field>
+            <field name="code">EXMPT</field>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+        </record>
+        <record id="hr_payroll_soc_alw_cat" model="hr.salary.rule.category">
+            <field name="name">Social Allowances</field>
+            <field name="code">SOC_ALW</field>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+        </record>
+
+        <!-- BASIC: 1, GROSS: 100, NET: 200 -->
+
+        <!-- HR SALARY RULES-->
+        <!-- Allowances -->
+        <record id="hr_payroll_transportation_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Transportation allowances</field>
+            <field name="code">TRANSPORT</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.transportation_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.transportation_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_meal_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Meal allowances</field>
+            <field name="code">MEAL</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.meal_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.meal_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_soc_alw_rule" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soc_alw_cat"/>
+            <field name="name">Social allowances</field>
+            <field name="code">SOCIAL_ALW</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.social_allowance_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.social_allowance_amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+        </record>
+        <record id="hr_payroll_mobile_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Mobile allowances</field>
+            <field name="code">MOBILE</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.mobile_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.mobile_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_commission_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Commission allowances</field>
+            <field name="code">COMMISSION</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.commission_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.commission_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_other_taxable_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Other Taxable allowances</field>
+            <field name="code">TAXABLE</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.other_taxable_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.other_taxable_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_non_taxable_alw" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Non Taxable allowances</field>
+            <field name="code">NONTAXABLE</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.non_taxable_amount > 0.0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.non_taxable_amount</field>
+            <field name="appears_on_payslip" eval="False"/>
+
+        </record>
+        <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+            <field name="name">Net</field>
+            <field name="sequence" eval="200"/>
+            <field name="code">NET</field>
+            <field name="category_id" ref="hr_payroll.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW - categories.DED</field>
+            <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+        </record>
+
+        <!-- FIXME: change variable_amount to insurance_variable_salary and added to insurance category and -->
+
+               <!-- FIXME: not calculated to GROSS and added to salary rules-->
+
+        <!-- Social Insurance rules -->
+        <record id="hr_payroll_rules_insurance_basic_rule" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_insurance"/>
+            <field name="name">Social Insurance Basic</field>
+            <field name="code">INS_BASIC</field>
+            <field name="sequence">41</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 1120 if contract.wage > 1120 else contract.wage</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_insurance_variable_rule" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_insurance"/>
+            <field name="name">Social Insurance variable</field>
+            <field name="code">INS_VAR</field>
+            <field name="sequence">42</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 2110 if contract.variable_amount + (contract.wage - INS_BASIC)\
+                >= 2110 else (contract.variable_amount + (contract.wage - INS_BASIC))
+            </field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_insurance_total_rule" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Employee Insurance Share</field>
+            <field name="code">INS_TOTAL</field>
+            <field name="sequence">43</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = INS_BASIC * 0.14 + INS_VAR * 0.11</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+
+        <!-- Total Exemption -->
+        <record id="hr_payroll_rules_exemptions" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_exemption"/>
+            <field name="name">Total exemptions</field>
+            <field name="code">EXEMPTIONS</field>
+            <field name="sequence">60</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.social_allowance_amount + contract.non_taxable_amount\
+                + contract.mobile_amount * 0.8 + INS_TOTAL + 1125
+            </field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+
+        <record id="hr_payroll_rules_taxable_amount" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_taxable"/>
+            <field name="name">Tax Pool</field>
+            <field name="code">TAXPOOL</field>
+            <field name="sequence">120</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.GROSS - categories.EXMPT</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <!-- TODO: extract child rules to main rules -->
+        <record id="hr_payroll_rules_tax" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_tax"/>
+            <field name="name">Income Taxes</field>
+            <field name="code">TAX</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.TAX_SC</field>
+            <field name="sequence">145</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="True"/>
+        </record>
+        <record id="hr_payroll_rules_taxes_1958" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_tax_sc"/>
+            <field name="name">Tax Slide#1</field>
+            <field name="code">TAX_1</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+if categories.TXBL &lt; 1958.34:
+    result = categories.TXBL * 0.10
+else:
+    result = 1958.34 * 0.10
+            </field>
+            <field name="sequence">141</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_taxes_3208" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_tax_sc"/>
+            <field name="name">Tax Slide#2</field>
+            <field name="code">TAX_2</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+if  categories.TXBL &lt; 3208.34:
+    result = (categories.TXBL - 1958.34) * 0.15
+else:
+    result = (3208.34 - 1958.34) * 0.15
+            </field>
+            <field name="sequence">142</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = categories.TXBL >= 1958.34</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_taxes_16125" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_tax_sc"/>
+            <field name="name">Tax Slide#3</field>
+            <field name="code">TAX_3</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+if categories.TXBL &lt; 16125.0:
+    result = (categories.TXBL - 3208.34) * 0.20
+else:
+    result = 1250 * 0.15 + (16125.0 - 3208.34) * 0.20
+            </field>
+            <field name="sequence">143</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = categories.TXBL >= 3208.34</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_taxes_16125_" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_tax_sc"/>
+            <field name="name">Tax Slide#4</field>
+            <field name="code">TAX_4</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = result =(categories.TXBL - 16125) * 0.225</field>
+            <field name="sequence">144</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = categories.TXBL >= 16125</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+
+        <record id="hr_payroll_salary_structure_legal_employee" model="hr.payroll.structure">
+            <field name="code">EGP.201508</field>
+            <field name="name">Egypt Legal rules. 201508</field>
+            <field eval="[(6, 0, [ref('hr_payroll_rules_tax'),ref('hr_payroll_rules_taxes_1958'),ref('hr_payroll_rules_taxes_3208'),
+            ref('hr_payroll_rules_exemptions'), ref('hr_payroll_rules_taxes_16125'),ref('hr_payroll_rules_taxes_16125_'),
+            ref('hr_payroll_rules_taxable_amount'),ref('hr_payroll_rules_insurance_basic_rule'),
+            ref('hr_payroll_rules_insurance_variable_rule'),ref('hr_payroll_transportation_alw'),
+            ref('hr_payroll_meal_alw'),ref('hr_payroll_mobile_alw'),ref('hr_payroll_soc_alw_rule'),
+            ref('hr_payroll_commission_alw'),ref('hr_payroll_other_taxable_alw'),ref('hr_payroll_non_taxable_alw'),
+            ref('hr_payroll_rules_insurance_total_rule'),])]"
+                   name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" ref="hr_payroll.structure_base"/>
+        </record>
+    </data>
+</openerp>
