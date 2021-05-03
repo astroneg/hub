@@ -288,7 +288,7 @@ else:
             ref('hr_payroll_rules_insurance_total_rule'),])]"
                    name="rule_ids"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="parent_id" ref="hr_payroll.structure_base"/>
+            <field name="type_id" eval="1"/>
         </record>
     </data>
 </openerp>
