@@ -55,7 +55,7 @@
             <field name="amount_select">code</field>
             <field name="amount_python_compute">result = contract.transportation_amount</field>
             <field name="appears_on_payslip" eval="False"/>
-            <field name="struct_id" ref="2"/>
+            <field name="struct_id" id=2/>
         </record>
         <record id="hr_payroll_meal_alw" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll.ALW"/>
