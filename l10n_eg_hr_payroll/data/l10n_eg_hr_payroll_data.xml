@@ -287,7 +287,7 @@ else:
             ref('hr_payroll_commission_alw'),ref('hr_payroll_other_taxable_alw'),ref('hr_payroll_non_taxable_alw'),
             ref('hr_payroll_rules_insurance_total_rule'),])]"
                    name="rule_ids"/>
-            <field name="company_id" ref="base.main_company"/>
+<!--             <field name="company_id" ref="base.main_company"/> -->
             <field name="type_id" eval="1"/>
         </record>
     </data>
