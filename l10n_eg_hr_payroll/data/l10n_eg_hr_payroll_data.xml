@@ -123,7 +123,7 @@
             <field name="appears_on_payslip" eval="False"/>
             <field name="struct_id" eval="2"/>
         </record>
-        <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+        <record id="hr_payroll_hr_rule_net" model="hr.salary.rule">
             <field name="name">Net</field>
             <field name="sequence" eval="200"/>
             <field name="code">NET</field>
